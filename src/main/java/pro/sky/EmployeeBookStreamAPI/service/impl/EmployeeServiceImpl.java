@@ -1,7 +1,9 @@
 package pro.sky.EmployeeBookStreamAPI.service.impl;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.EmployeeBookStreamAPI.Employee;
+import pro.sky.EmployeeBookStreamAPI.exceptions.IncorrectInputException;
 import pro.sky.EmployeeBookStreamAPI.service.EmployeeService;
 
 import java.util.*;
@@ -53,5 +55,16 @@ public class EmployeeServiceImpl implements EmployeeService {
                 .collect(Collectors.groupingBy(Employee::getDepartment));
         return collect;
 
+    }
+
+    @Override
+    public Employee checkCorrectInput(String firstName, String lastName, int department, int salary) {
+        Employee employee = new Employee(firstName, lastName, department, salary);
+        if (StringUtils.isAlpha(firstName) && StringUtils.isAlpha(lastName)) {
+            employees.add(employee);
+        } else
+            throw new IncorrectInputException("ФИО должно содержать только буквы!");
+
+        return employee;
     }
 }
