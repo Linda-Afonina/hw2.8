@@ -39,4 +39,13 @@ public class EmployeeController {
     public Map<Integer, List<Employee>> printAllEmployees() {
         return employeeService.printAllEmployees();
     }
+
+    @GetMapping("check")
+    public Employee checkCorrectInput(
+            @RequestParam("firstName") String firstName,
+            @RequestParam("lastName") String lastName,
+            @RequestParam("departmentId") int department,
+            @RequestParam("salary") int salary) {
+        return employeeService.checkCorrectInput(firstName, lastName, department, salary);
+    }
 }

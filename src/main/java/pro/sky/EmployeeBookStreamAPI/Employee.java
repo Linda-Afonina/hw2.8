@@ -1,5 +1,8 @@
 package pro.sky.EmployeeBookStreamAPI;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.util.Locale;
 import java.util.Objects;
 
 public class Employee implements Comparable<Employee> {
@@ -12,8 +15,8 @@ public class Employee implements Comparable<Employee> {
     private final int id;
 
     public Employee(String firstName, String lastName, int department, int salary) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
         this.department = department;
         this.salary = salary;
         this.id = ++count;

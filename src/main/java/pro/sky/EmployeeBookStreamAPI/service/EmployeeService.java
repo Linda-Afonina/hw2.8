@@ -17,4 +17,6 @@ public interface EmployeeService {
     List<Employee> printEmployeesInDepartment(int department);
 
     Map<Integer, List<Employee>> printAllEmployees();
+
+    public Employee checkCorrectInput(String firstName, String lastName, int department, int salary);
 }
